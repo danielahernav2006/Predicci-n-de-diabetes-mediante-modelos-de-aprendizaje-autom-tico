@@ -1,0 +1,2 @@
+Modelo,Metodo,Balanceo,CV Recall,Test Accuracy,Test Precision,Test Recall,Test F1,Test AUC,Tiempo (s),Evaluaciones,Best Params,Timestamp
+SVM RBF,Optuna,class_weight,0.8191676348939861,0.6992273730684326,0.2932087856601868,0.821474041590041,0.43216491776438193,0.8214918689968544,9497.315230607986,12,"{'balance_strategy': 'class_weight', 'C': 7.7840717634715, 'gamma': 0.01}",20260516_211642

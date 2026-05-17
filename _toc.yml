@@ -1,0 +1,4 @@
+format: jb-book
+root: intro
+chapters:
+  - file: EDA DIABETES - PARTE 2

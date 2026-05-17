@@ -1,0 +1,105 @@
+Traceback (most recent call last):
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\jupyter_core\utils\__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\jupyter_core\utils\__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\danih\miniconda3\envs\dataviz_venv\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#Organización de variables para modelado
+
+#NOTA:
+#Para la etapa de modelado se trabajará con `df` como base principal, ya que `df_viz` fue construido con fines de visualización y varias variables fueron recodificadas como categóricas para facilitar el EDA.
+# Así: `df`  -> se usará para preprocesamiento y modelado
+#`df_viz` -> se conserva únicamente para visualizaciones y análisis gráfico
+
+df_model = df.copy()
+
+#Variable objetivo ----------------------------------------------
+#Ya habíamos definido la variable objetivo como "Diabetes_binary" en etapas anteriores, pero se reafirma aquí para mantener claridad y estructura en esta sección de modelado.
+#Objetivo = "Diabetes_binary"
+
+#Definición de grupos de variables -----------------------------
+#Se clasifican las variables predictoras en grupos según su tipo, lo cual facilitará la selección de técnicas de preprocesamiento y modelado específicas para cada tipo de variable.
+#Ya también se habían identificado estas variables en etapas anteriores.
+#binary_feature_cols 
+#numeric_cols
+#ordinal_cols 
+
+ 
+#En este dataset en particular no quedan variables nominales puras, porque la mayoría vienen ya codificadas como enteros. Se deja la lista definida para mantener una estructura reusable.
+#categorical_cols = []
+
+
+#Verificación básica----------------------------------------------
+
+all_defined_cols = numeric_cols + ordinal_cols + binary_feature_cols + [Objetivo]
+
+predictor_cols = [col for col in df_model.columns if col != Objetivo]
+
+missing_in_definition = sorted(set(predictor_cols) - set(all_defined_cols))
+duplicated_in_groups = sorted([col for col in all_defined_cols if all_defined_cols.count(col) > 1])
+#missing_in_definition
+#duplicated_in_groups
+
+print("Variable objetivo:", Objetivo)
+print("\nNúmero total de predictores en df_model:", len(predictor_cols))
+print("Número total de variables clasificadas:", len(all_defined_cols))
+
+print("\nResumen por grupo:")
+print(f"- Numéricas continuas: {len(numeric_cols)}")
+print(f"- Ordinales: {len(ordinal_cols)}")
+print(f"- Binarias: {len(binary_feature_cols)}")
+
+print("\nVariables numéricas continuas:", numeric_cols)
+print("Variables ordinales:", ordinal_cols)
+print("Variables binarias:", binary_feature_cols)
+
+
+#Separación X e y---------------------------------------------------------------------------
+
+X = df_model.drop(columns=[Objetivo])
+y = df_model[Objetivo]
+
+print("\nShape de X:", X.shape)
+print("Shape de y:", y.shape)
+
+print("\nDistribución de la variable objetivo:")
+print(y.value_counts().sort_index())
+print("\nProporción de la variable objetivo:")
+print(y.value_counts(normalize=True).sort_index())
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[2], line 28[0m
+[0;32m      8[0m df_model [38;5;241m=[39m df[38;5;241m.[39mcopy()
+[0;32m     10[0m [38;5;66;03m#Variable objetivo ----------------------------------------------[39;00m
+[0;32m     11[0m [38;5;66;03m#Ya habíamos definido la variable objetivo como "Diabetes_binary" en etapas anteriores, pero se reafirma aquí para mantener claridad y estructura en esta sección de modelado.[39;00m
+[0;32m     12[0m [38;5;66;03m#Objetivo = "Diabetes_binary"[39;00m
+[1;32m   (...)[0m
+[0;32m     25[0m 
+[0;32m     26[0m [38;5;66;03m#Verificación básica----------------------------------------------[39;00m
+[1;32m---> 28[0m all_defined_cols [38;5;241m=[39m [43mnumeric_cols[49m [38;5;241m+[39m ordinal_cols [38;5;241m+[39m binary_feature_cols [38;5;241m+[39m [Objetivo]
+[0;32m     30[0m predictor_cols [38;5;241m=[39m [col [38;5;28;01mfor[39;00m col [38;5;129;01min[39;00m df_model[38;5;241m.[39mcolumns [38;5;28;01mif[39;00m col [38;5;241m!=[39m Objetivo]
+[0;32m     32[0m missing_in_definition [38;5;241m=[39m [38;5;28msorted[39m([38;5;28mset[39m(predictor_cols) [38;5;241m-[39m [38;5;28mset[39m(all_defined_cols))
+
+[1;31mNameError[0m: name 'numeric_cols' is not defined
+
