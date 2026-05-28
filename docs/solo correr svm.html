@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Correr svm &#8212; My Jupyter Book</title>
+    <title>Correr svm &#8212; Proyecto Diabetes - Machine Learning</title>
   
   
   
@@ -135,7 +135,7 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
-    <p class="title logo__title">My Jupyter Book</p>
+    <p class="title logo__title">Proyecto Diabetes - Machine Learning</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -149,7 +149,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="EDA%20DIABETES%20-%20PARTE%202.html"><strong>Análisis Exploratorio de Indicadores de Salud y Factores Asociados a la Diabetes en la Encuesta BRFSS 2015</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="EDA%20DIABETES%20-%20PARTE%202.html"><strong>Arquitectura Predictiva de Diabetes Basada en Optimización Multi-Modelo y Aprendizaje Automático</strong></a></li>
 </ul>
 
     </div>
@@ -300,7 +300,7 @@ document.write(`
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías importantes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerías importantes</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -327,7 +327,7 @@ document.write(`
 <h1><strong>Correr svm</strong><a class="headerlink" href="#correr-svm" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Organización de variables para modelado</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Organización de variables para modelado</span>
 
 <span class="c1">#NOTA:</span>
 <span class="c1">#Para la etapa de modelado se trabajará con `df` como base principal, ya que `df_viz` fue construido con fines de visualización y varias variables fueron recodificadas como categóricas para facilitar el EDA.</span>
@@ -392,29 +392,12 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">28</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">df_model</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1">#Variable objetivo ----------------------------------------------</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1">#Ya habíamos definido la variable objetivo como &quot;Diabetes_binary&quot; en etapas anteriores, pero se reafirma aquí para mantener claridad y estructura en esta sección de modelado.</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1">#Objetivo = &quot;Diabetes_binary&quot;</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> 
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="c1">#Verificación básica----------------------------------------------</span>
-<span class="ne">---&gt; </span><span class="mi">28</span> <span class="n">all_defined_cols</span> <span class="o">=</span> <span class="n">numeric_cols</span> <span class="o">+</span> <span class="n">ordinal_cols</span> <span class="o">+</span> <span class="n">binary_feature_cols</span> <span class="o">+</span> <span class="p">[</span><span class="n">Objetivo</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="n">predictor_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_model</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">Objetivo</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">missing_in_definition</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">predictor_cols</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">all_defined_cols</span><span class="p">))</span>
-
-<span class="ne">NameError</span>: name &#39;numeric_cols&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">index</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">index</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
 
@@ -459,7 +442,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedKFold</span>
 
 <span class="c1">#Esquema de validación cruzada</span>
 <span class="n">cv_strategy</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span>
@@ -503,7 +486,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Función auxiliar para construir el preprocesador</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Función auxiliar para construir el preprocesador</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
@@ -555,7 +538,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1">#Construir preprocesador de inspección</span>
@@ -618,7 +601,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ks_2samp</span><span class="p">,</span> <span class="n">chi2_contingency</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
@@ -748,7 +731,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -859,7 +842,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -895,7 +878,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classification_models</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classification_models</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;knn&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;KNN&quot;</span><span class="p">,</span>
         <span class="s2">&quot;scale_numeric&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -943,7 +926,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_train_data</span><span class="p">(</span><span class="n">model_key</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_train_data</span><span class="p">(</span><span class="n">model_key</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">classification_models</span><span class="p">[</span><span class="n">model_key</span><span class="p">][</span><span class="s2">&quot;sample&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">X_train_sample</span><span class="p">,</span> <span class="n">y_train_sample</span>
     <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span>
@@ -1058,7 +1041,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_spaces_grid</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">param_spaces_grid</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;knn&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;model__n_neighbors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
         <span class="s2">&quot;model__weights&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="s2">&quot;distance&quot;</span><span class="p">],</span>
@@ -1113,7 +1096,7 @@ document.write(`
 <p><strong>GRID</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_grid_search_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_grid_search_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">):</span>
 
     <span class="n">model_info</span> <span class="o">=</span> <span class="n">classification_models</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span>
     <span class="n">X_train_used</span><span class="p">,</span> <span class="n">y_train_used</span> <span class="o">=</span> <span class="n">get_train_data</span><span class="p">(</span><span class="n">model_key</span><span class="p">)</span>
@@ -1170,7 +1153,7 @@ document.write(`
 <p><strong>RANDOM SEARCH</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_distributions_random</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">param_distributions_random</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;random_forest&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;model__n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
         <span class="s2">&quot;model__max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
@@ -1182,6 +1165,21 @@ document.write(`
     <span class="s2">&quot;svm&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;model__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
         <span class="s2">&quot;model__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">},</span>
+    
+    <span class="s2">&quot;decision_tree&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;model__criterion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span> <span class="s2">&quot;entropy&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;model__max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="s2">&quot;model__min_samples_split&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+        <span class="s2">&quot;model__min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="p">},</span>
+
+    <span class="s2">&quot;logistic_l1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;model__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+    <span class="p">},</span>
+
+    <span class="s2">&quot;logistic_l2&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;model__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1190,7 +1188,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_random_search_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_random_search_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
 
     <span class="n">model_info</span> <span class="o">=</span> <span class="n">classification_models</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span>
     <span class="n">X_train_used</span><span class="p">,</span> <span class="n">y_train_used</span> <span class="o">=</span> <span class="n">get_train_data</span><span class="p">(</span><span class="n">model_key</span><span class="p">)</span>
@@ -1249,7 +1247,7 @@ document.write(`
 <p><strong>OPTUNA</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">optuna</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">suggest_params_optuna</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">model_key</span><span class="p">):</span>
 
@@ -1307,7 +1305,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_estimator_from_params</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_estimator_from_params</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">balance_strategy</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">model_key</span> <span class="o">==</span> <span class="s2">&quot;knn&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
@@ -1375,13 +1373,11 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">objective_optuna</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">model_key</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">objective_optuna</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">model_key</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="n">X_model_train</span><span class="p">,</span> <span class="n">y_model_train</span> <span class="o">=</span> <span class="n">get_train_data</span><span class="p">(</span><span class="n">model_key</span><span class="p">)</span>
 
-    <span class="n">available_balance</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;smote&quot;</span><span class="p">,</span> <span class="s2">&quot;adasyn&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">supports_class_weight</span><span class="p">(</span><span class="n">model_key</span><span class="p">)</span> <span class="ow">or</span> <span class="n">model_key</span> <span class="o">==</span> <span class="s2">&quot;xgboost&quot;</span><span class="p">:</span>
-        <span class="n">available_balance</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;class_weight&quot;</span><span class="p">)</span>
+    <span class="n">available_balance</span> <span class="o">=</span> <span class="n">get_balance_options</span><span class="p">(</span><span class="n">model_key</span><span class="p">)</span>
 
     <span class="n">balance_strategy</span> <span class="o">=</span> <span class="n">trial</span><span class="o">.</span><span class="n">suggest_categorical</span><span class="p">(</span><span class="s2">&quot;balance_strategy&quot;</span><span class="p">,</span> <span class="n">available_balance</span><span class="p">)</span>
     <span class="n">params</span> <span class="o">=</span> <span class="n">suggest_params_optuna</span><span class="p">(</span><span class="n">trial</span><span class="p">,</span> <span class="n">model_key</span><span class="p">)</span>
@@ -1435,7 +1431,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_optuna_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_optuna_model</span><span class="p">(</span><span class="n">model_key</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
 
     <span class="n">model_info</span> <span class="o">=</span> <span class="n">classification_models</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span>
 
@@ -1513,16 +1509,16 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>deap
-<span class="kn">from</span><span class="w"> </span><span class="nn">deap</span><span class="w"> </span><span class="kn">import</span> <span class="n">base</span><span class="p">,</span> <span class="n">creator</span><span class="p">,</span> <span class="n">tools</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install deap
+from deap import base, creator, tools
+import random
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deap_spaces</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deap_spaces</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;logistic_l2&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
         <span class="s2">&quot;balance_strategy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;smote&quot;</span><span class="p">,</span> <span class="s2">&quot;adasyn&quot;</span><span class="p">,</span> <span class="s2">&quot;class_weight&quot;</span><span class="p">]</span>
@@ -1551,7 +1547,8 @@ document.write(`
         <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
         <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
         <span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-        <span class="s2">&quot;balance_strategy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;smote&quot;</span><span class="p">,</span> <span class="s2">&quot;adasyn&quot;</span><span class="p">,</span> <span class="s2">&quot;class_weight&quot;</span><span class="p">]</span>
+        <span class="s2">&quot;balance_strategy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="s2">&quot;smote&quot;</span><span class="p">,</span> <span class="s2">&quot;adasyn&quot;</span><span class="p">,</span> <span class="s2">&quot;class_weight&quot;</span><span class="p">],</span> 
+        <span class="s2">&quot;max_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sqrt&quot;</span><span class="p">,</span> <span class="s2">&quot;log2&quot;</span><span class="p">]</span> 
     <span class="p">},</span>
     <span class="s2">&quot;xgboost&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">],</span>
@@ -1574,7 +1571,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">individual_to_params</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model_key</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">individual_to_params</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model_key</span><span class="p">):</span>
     <span class="n">space</span> <span class="o">=</span> <span class="n">deap_spaces</span><span class="p">[</span><span class="n">model_key</span><span class="p">]</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
@@ -1592,7 +1589,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_deap_individual</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model_key</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_deap_individual</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model_key</span><span class="p">,</span> <span class="n">scale_numeric</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="n">params</span><span class="p">,</span> <span class="n">balance_strategy</span> <span class="o">=</span> <span class="n">individual_to_params</span><span class="p">(</span><span class="n">individual</span><span class="p">,</span> <span class="n">model_key</span><span class="p">)</span>
 
@@ -1650,7 +1647,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_deap_model</span><span class="p">(</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_deap_model</span><span class="p">(</span>
     <span class="n">model_key</span><span class="p">,</span>
     <span class="n">n_population</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">n_generations</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
@@ -1810,21 +1807,21 @@ document.write(`
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>tqdm
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install tqdm
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
@@ -1856,7 +1853,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_results_svm</span><span class="p">,</span> <span class="n">completed_grid</span> <span class="o">=</span> <span class="n">load_existing_results</span><span class="p">(</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grid_results_svm</span><span class="p">,</span> <span class="n">completed_grid</span> <span class="o">=</span> <span class="n">load_existing_results</span><span class="p">(</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">balance_strategy</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">get_balance_options</span><span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;SVM RBF | Grid Search&quot;</span><span class="p">):</span>
 
@@ -1877,7 +1874,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_results_svm</span><span class="p">,</span> <span class="n">completed_random</span> <span class="o">=</span> <span class="n">load_existing_results</span><span class="p">(</span><span class="s2">&quot;random&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">random_results_svm</span><span class="p">,</span> <span class="n">completed_random</span> <span class="o">=</span> <span class="n">load_existing_results</span><span class="p">(</span><span class="s2">&quot;random&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">balance_strategy</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">get_balance_options</span><span class="p">(</span><span class="s2">&quot;svm&quot;</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;SVM RBF | Random Search&quot;</span><span class="p">):</span>
 
@@ -1899,7 +1896,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">optuna_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CHECKPOINT_DIR</span><span class="si">}</span><span class="s2">/svm_optuna.joblib&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optuna_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CHECKPOINT_DIR</span><span class="si">}</span><span class="s2">/svm_optuna.joblib&quot;</span>
 
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">optuna_path</span><span class="p">):</span>
     <span class="n">optuna_results_svm</span> <span class="o">=</span> <span class="p">[</span><span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">optuna_path</span><span class="p">)]</span>
@@ -1923,7 +1920,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deap_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CHECKPOINT_DIR</span><span class="si">}</span><span class="s2">/svm_deap.joblib&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deap_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">CHECKPOINT_DIR</span><span class="si">}</span><span class="s2">/svm_deap.joblib&quot;</span>
 
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">deap_path</span><span class="p">):</span>
     <span class="n">deap_results_svm</span> <span class="o">=</span> <span class="p">[</span><span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">deap_path</span><span class="p">)]</span>
@@ -1946,9 +1943,9 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resumen SVM</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resumen SVM</span>
 
-<span class="n">all_results_svm</span> <span class="o">=</span> <span class="n">grid_results_svm</span> <span class="o">+</span> <span class="n">random_results_svm</span> <span class="o">+</span> <span class="n">optuna_results_svm</span> <span class="o">+</span> <span class="n">deap_results_svm</span>
+<span class="n">all_results_svm</span> <span class="o">=</span> <span class="n">grid_results_svm</span> <span class="o">+</span> <span class="n">random_results_svm</span>
 
 <span class="n">svm_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
     <span class="p">{</span>
@@ -1987,7 +1984,8 @@ document.write(`
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Guardado completo de resultados del modelo</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">#Guardado completo de resultados del modelo</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">joblib</span>
@@ -2164,7 +2162,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book community
+By Equipo de trabajo
 </p>
 
   </div>
